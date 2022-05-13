@@ -17,7 +17,7 @@
         <div class="wrapper login">
             <h2>Login</h2> 
             <div>
-            <form action= "../actions/login.php"  id="login-form" >
+            <form action= "../actions/logging.php"  id="login-form" >
                 ID number: 
                 <input class = "form-control" type="number" name="idNumber" value="" require="required" />
                 <br>
@@ -27,7 +27,8 @@
                 <br>
                 <br>
                 Status:
-                <select name="status" class = "form-select">
+                <select name="user_status" class = "form-select">
+                    <option value="choose" selected="selected">Choose</option>
                     <option value="candidate">Candidate</option>
                     <option value="voter">Voter</option>
                 </select>

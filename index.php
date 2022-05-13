@@ -27,7 +27,7 @@
                 <br>
                 <br>          
                 ID number:
-                <input class = "form-control" type="text" name="idNumber" placeholder = "Enter username" value="" require="required" />
+                <input class = "form-control" type="text" name="idNumber" placeholder = "Enter ID number" value="" require="required" />
                 <br>
                 <br>
                 Password:
@@ -41,7 +41,7 @@
                
                 Status:
                 <select name="user_status" class = "form-select">
-                    <option value="candidate">Choose</option>
+                    <option value="choose" selected="selected">Choose</option>
                     <option value="candidate">Candidate</option>
                     <option value="voter">Voter</option>
                 </select>

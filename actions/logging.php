@@ -6,14 +6,16 @@ $password = $_POST['password'];
 $user_status = $_POST['user_status'];
 
 $query = "Select * from `user-data` where idNumber='$idNumber' and
-password = '$password' and user-status = '$user_status'";
+password = '$password' and user_status = '$user_status'";
 
 $result = mysqli_query($con, $query);
+
 if(mysqli_num_rows($result)>0){
     $query = "Select idNumber,votes,id from `user-data` where usere_status ='candidate'";
     $resultcandidate = mysqli_query($con, $query);
+
     if(mysqli_num_rows($resultcandidate)>0){
-        $candidate = mysqli_fetch_all($resultcandidate, MYSQLI_ASSOC);
+        $candidates = mysqli_fetch_all($resultcandidate, MYSQLI_ASSOC);
         $_SESSION['candidate']=$candidate;
     }
     $data=mysqli_fetch_array($result);
