@@ -1,37 +1,23 @@
-<?php
-include('connect.php');
-
-$idNumber = $_POST['idNumber'];
-$password = $_POST['password'];
-$user_status = $_POST['user_status'];
-
-$query = "Select * from `user-data` where idNumber='$idNumber' and
-password = '$password' and user_status = '$user_status'";
-
-$result = mysqli_query($con, $query);
-
-if(mysqli_num_rows($result)>0){
-    $query = "Select idNumber,votes,id from `user-data` where usere_status ='candidate'";
-    $resultcandidate = mysqli_query($con, $query);
-
-    if(mysqli_num_rows($resultcandidate)>0){
-        $candidates = mysqli_fetch_all($resultcandidate, MYSQLI_ASSOC);
-        $_SESSION['candidate']=$candidate;
+<?php 
+    $query = "SELECT * FROM `user-data`";
+    $result = mysqli_query($con, $query); 
+    if(!$result) {
+        die('Query insertion failed');      
     }
-    $data=mysqli_fetch_array($result);
-    $_SESSION ['id']=$data['id'];
-    $_SESSION ['voting_status']= $data['voting_status'];
-    $_SESSION ['data']= $data;
-
-echo '<script>
-    window.location="../include/dashboard.php";
-    </script';
     
-}else{
-    echo '<script>
-    alert("Invalid credentials");
-    window.location = "../include/login.php";
-    </script>';
-}
+if (isset($_POST['login'])) {
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $idNumber = $_POST['idNumber'];
+    $password = $_POST['password'];
+    $user_status = $_POST['user_status'];
 
-?>
+    // print_r(mysqli_fetch_assoc($result));
+
+    while($row = mysqli_fetch_assoc($result)) {
+        if ($idNumber === $row['idNumber'] && $password === $row['password'] && $user_status === $row['user_status']) {
+            header('Location: dashboard.php');
+            exit;
+        } 
+    }  
+    }}    
+    ?>
